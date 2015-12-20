@@ -1,0 +1,79 @@
+0.  How many different colors does each format support?
+    - BMP: 32 bits
+    - GIF: 8 bits; 256 different colors
+    - JPEG: 24 bits per pixel. 8 bits each for red, green, and blue.
+        This gives 16 million possible colors.
+    - PNG: 24 bits
+    
+1.  Which of the formats supports animation?
+    - GIF
+    
+2.  What's the difference between lossy and lossless compression?
+	- With lossless compression, every single bit of data that was originally
+	in the file remains after the file is uncompressed.
+	- Lossy compression reduces a file by permanently eliminating certain information,
+	especially redundant information.
+	    
+3.  Which of these formats is lossy compressed?
+	- JPEG
+	
+4.  What happens, technically speaking, when a file is deleted on a FAT(File Allocation Table) file system?
+	- When an OS(Operating System) erases a FAT file, two things occur:
+		- The system modifies the filename's first character in the file's directory entry to signal that the file has been deleted and that the directory entry can be recycled.
+		- The system moves all of the file's FAT clusters to the hard drive's list of free clusters.
+	- This means, that:
+		- The actual file data is never touched/'erased'.
+
+5.  What can someone like you do to ensure (with high probability) that files you delete cannot be recovered?
+	- The most common techniques for properly sanitizing hard drives include:
+		- Physically destroying the hard drive; making it unusable.
+		- Degaussing the drive to randomize the magnetic domains which might make the drive unusable in the process.
+		- Overwriting the drive's data so that it cannot be recovered.
+	
+6.  What's in 'stdint.h'?
+	- 'stdint.h' contains a set of typedefs that specify exact-width interger types,together with the defined minimum and maximum allowable values for each type, using macros.
+ 
+7.  What's the point of using 'uint8_t', 'uint32_t', 'int32_t', and 'uint16_t' in a program?
+	- They precisely define a value in bits. If we want an integer type that's precisely 32 bits long, we can always use a 'long', but for precision, we can use int32_t (or uint32_t) instead.
+
+8.  How many bytes is a 'BYTE', a 'DWORD', a 'LONG', and a 'WORD', respectively? (Assume a 32-bit architecture like the CS50 appliance) 
+	- 'BYTE' = 8 bytes
+	- 'DWORD' = 32 bytes
+	- 'LONG' = 32 bytes
+	- 'WORD' =16 bytes
+
+9.  What (in ASCII, decimal or hexadecimal) must the first two bytes of any BMP file be?
+	(Leading bytes used to identify file formats (with high probability) are generally called "magic numbers").
+	- 'Magic numbers' of any BMP files are 0x4D 0X42 (424D)
+	
+10. What's the difference between 'bfSize' and 'biSize'?
+	- bfSize is the size of the whole BMP file: the BMP image + the size of the headers.
+	- biSize is the size of the BMP image: size of the RGBTRIPLE + the total size of the padding.
+
+11. What does it mean if 'biHeight' is negative?
+	- If the 'biHeight' is negative, the bitmap is a top-down DIB (Device Independent Bitmap) with the origin at the upper left corner.
+
+12. What field in 'BITMAPINFOHEADER' specifies the BMP's color depth? (i.e bits per pixel)?
+	- In the color table.
+
+13. Why might 'fopen' return 'NULL' in 'copy.c:37'?
+	-'fopen' might fail even if our program is perfectly correct because we might try to open a file that might not exist or may be write-protected.
+
+14. Why is the third argument to 'fread' always '1' in our code?
+	- The third argument to 'fread' is always 1 because we only want to copy or pass 1 element
+
+15. What value does 'copy.c: 70' assign 'paddding' if 'bi.biWidth' is '3'?
+	- The value is 0.
+
+16. What does 'fseek' do?
+	- 'fseek' sets the file position of the stream (pointer to a FILE object that identifies it) to the given offset (number of bytes to the offset from 'whence', a position from where the offset is added.)
+
+17. What is 'SEEK_CUR'?
+	- 'SEEK_CUR' is the current position of the file pointer.
+
+18. Whodunit?
+	- Rob Bowden.
+
+
+
+
