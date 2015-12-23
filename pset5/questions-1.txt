@@ -1,0 +1,21 @@
+1. What is #undef?
+	- #undef is the opposite of #define. undef 'undefines' a constant
+
+2. What is getrusage?
+	- The function getrusage (resource usage) and the data type <struct rusage>
+	are used to examine the resource usage of a process.
+	- FUNCTION: int getrusage(int processes, struct rusage *rusage)
+	- This function reports resource usage totals (for processes specified by 'processes'),
+	storing information in *rusage.
+		- processes has only 2 valid values:
+			- RUSAGE_SELF = just the current process.
+			- RUSAGE_CHILDREN = all child processes (direct / indirect) that have
+			already terminated.
+	- the return value of getrusage is 0 for success. -1 for failure.
+
+3. What are the ?: operators?
+	- ?: is a part of the ternary operators and is the equivalent of the if..else
+	condition.
+	- (condition) ? exp1 : exp2; // the syntax
+	if the condition in the paren is true, the exp at the left will be assigned,
+	else the one at the right

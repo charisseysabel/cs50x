@@ -1,0 +1,80 @@
+0.  What is pneumonoultramicroscopicsilicovolcanoconiosis
+	- an artificial long word said to mean a lung disease caused by inhaling very fine
+	ash and sand dust.
+
+1.  According to its man page, what does getrusage do?
+	- The function getrusage (resource usage) and the data type <struct rusage>
+	are used to examine the resource usage of a process.
+	- FUNCTION: int getrusage(int processes, struct rusage *rusage)
+	- This function reports resource usage totals (for processes specified by 'processes'),
+	storing information in *rusage.
+		- processes has only 2 valid values:
+			- RUSAGE_SELF = just the current process.
+			- RUSAGE_CHILDREN = all child processes (direct / indirect) that have
+			already terminated.
+	- the return value of getrusage is 0 for success. -1 for failure.
+	
+2.  Per that same man page, how many members are in a variable of type struct rusage?
+	- 16
+	
+3.  Why do you think we pass before and after by reference (instead of by value) to calculate,
+	even though we're not changing their contents?
+	- Because we use before and after multiple times throughout the program.
+	Therefore, instead of making variables, we can simply overwrite the data?
+	
+4.  Explain as precisely as possible, in a paragraph or more, how main goes about reading words from a file.
+	In other words, convince us that you indeed understand how that function's for loop works.
+	- The process starts on line 60, where main tries to open the text file. It checks the number of arguments passed:
+	If its 3, the third argument (provided by the user via command line during execution of ./speller) will be used. Otherwise,
+	it would load the second argument (meaning if the user did not provide any dictionary. In this case, the default dictionary will be loaded.)
+	- Main opens the file text and reads through it. As always, we must check if the input is NULL.
+	- Variables are then declared to monitor each word and misspellings.
+	- Inside the for loop, main declares a variable called c that takes single characters from the text file.
+	If c is not encountering any EOF or \0, it would continue to loop.
+		- For loop checks if the current character is an alphabetical letter. If it is, it appends the current character
+		into an array called "word" (to form a word) then updates the index.
+			-If the index is greater than the maximum length (LENGTH = 45), main would loop again until the EOF is reached
+			and until the current index is a character. Then the index is set back to 0 to prepare for a new word.
+		- The main for loop also checks if c is currently a digit. If it is, then it would continue looping through
+		while c has not encountered the end of file and while its still a number. The index updates again to prepare for a new word.
+		- Else if the index is greater than 0, main must have found a whole word. We then terminate the word array with a \0 and update the words counter,
+		indicating the number of words main have found.		
+	
+5.  Why do you think we used fgetc to read each word's characters one at a time rather than use fscanf
+	with a format string like %s to read whole words at a time?
+	Put another way, what problems might arise by relying on fscanf alone?
+	- I guess we might not be able to determine exactly how long the current word is and we might not know where it ends?
+
+6.  Why do you think we declared the parameters for check and load as constant?
+	- Because it might vary from computer to computer?
+
+7.  What data structure(s) did you use to implement your spell-checker?
+	- For my spell checker, I used a trie because it seemed much easier to implement than a hash table that needs a special hash function.
+	Inside each of my trie nodes, are pointers to the individual letters of the alphabet. The letters (in this case, the ASCII letters) are not stored in the node itself, but rather just its index value.
+
+
+8.  How slow was your code the first time you got it working correctly?
+	- It ran 0.00 because I used a small dictionary and a small text file.
+	
+9.  What kinds of changes, if any, did you make to your code in order to improve its performance?
+	- None.
+
+10. Do you feel that your code has any bottlenecks that you were not able to chip away at?
+	- Currently, the leaks which I hope to fix later.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
